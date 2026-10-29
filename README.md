@@ -121,16 +121,16 @@ The system uses Jaccard similarity to compare customers based on their unique pu
 
 The formula is:
 
-\[
+$$
 J(A,B)=\frac{|A\cap B|}{|A\cup B|}
-\]
+$$
 
 Where:
 
-- \(A\) is the set of products purchased by the first customer.
-- \(B\) is the set of products purchased by the second customer.
-- \(A\cap B\) represents the products both customers purchased.
-- \(A\cup B\) represents all unique products purchased by either customer.
+- $A$ is the set of products purchased by the first customer.
+- $B$ is the set of products purchased by the second customer.
+- $A \cap B$ represents the products both customers purchased.
+- $A \cup B$ represents all unique products purchased by either customer.
 
 The similarity score ranges from 0 to 1.
 
@@ -149,9 +149,9 @@ Their intersection is `{P2}`, containing one product. Their union is `{P1, P2, P
 
 Therefore:
 
-\[
+$$
 J(A,B)=\frac{1}{3}\approx0.3333
-\]
+$$
 
 The similarity score is approximately `0.33`.
 
@@ -199,13 +199,14 @@ If a customer has already purchased every available product, the system will ret
 The score(evidence) method calculates a score for each candidate product by combining customer similarity and product popularity. This helps the system recommend products that are both relevant to similar customers and frequently purchased.
 
 For recommendations based on similar customers, the formula is:
-\[
+
+$$
 \text{Score}(p)=0.7T(p)+0.3P(p)
-\]
+$$
 
 Where:
-- \(T(p)\) — Similarity Total: The sum of the similarity scores of all customers who support the recommendation.
-- \(P(p)\) — Popularity Score: The number of valid purchase records for the product divided by the highest purchase-record count among all products.
+- $T(p)$ — Similarity Total: The sum of the similarity scores of all customers who support the recommendation.
+- $P(p)$ — Popularity Score: The number of valid purchase records for the product divided by the highest purchase-record count among all products.
 
 The formula assigns 70% weight to similarity and 30% to popularity. Similarity receives more weight because the system aims to recommend products based on the purchasing behaviour of customers with similar interests.
 
@@ -214,9 +215,10 @@ The formula assigns 70% weight to similarity and 30% to popularity. Similarity r
 If the system cannot find suitable products through similar customers, it uses product popularity to recommend products the customer has not purchased.
 
 The fallback formula is:
-\[
+
+$$
 \text{Score}(p)=0.3P(p)
-\]
+$$
 
 In this case, only the popularity component contributes to the score because there is no supporting neighbour evidence.
 
@@ -225,18 +227,20 @@ In this case, only the popularity component contributes to the score because the
 Suppose a candidate product has a similarity total of `1.0`, five purchase records and the most popular product has ten purchase records.
 
 First, calculate the popularity score:
-\[
+
+$$
 P(p)=\frac{5}{10}=0.5
-\]
+$$
 
 Then calculate the recommendation score:
-\[
+
+$$
 \begin{aligned}
 \text{Score}(p)&=0.7(1.0)+0.3(0.5)\\
 &=0.7+0.15\\
 &=0.85
 \end{aligned}
-\]
+$$
 
 The final recommendation score is 0.85.
 
