@@ -1,0 +1,3 @@
+.day4venv/
+__pycache__/
+*.py[cod]
